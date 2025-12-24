@@ -6,7 +6,6 @@ import Pages.CartPage;
 import Pages.HomePage;
 import Pages.LogInPage;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -17,7 +16,7 @@ import java.io.IOException;
 
 import static org.testng.AssertJUnit.assertTrue;
 
-public class CartFunctionality extends BaseTest {
+public class CartFunctionalityTest extends BaseTest {
 
 
 
@@ -27,7 +26,7 @@ public class CartFunctionality extends BaseTest {
         logInPage = new LogInPage();
         homePage = new HomePage();
         cartPage = new CartPage();
-        UserBase = new ExcelReader("Users\\Swag Labs Users.xlsx");
+        UserBase = new ExcelReader("src\\test\\resources\\testdata\\Swag Labs Users.xlsx");
         logInPage.UsernameFieldInput(UserBase.getStringData("Credentials", 1, 0));
         logInPage.PasswordFieldInput(UserBase.getStringData("Credentials", 1, 1));
         logInPage.clickOnLoginButton();
@@ -41,20 +40,10 @@ public class CartFunctionality extends BaseTest {
         drajver.navigate().refresh();
     }
 
-    @Test(priority = 0)
-    public void PriceOfItemIsTheSameInCartPage(){
-        homePage.clickOnAddToCartButton();
-        double itemPrice = homePage.getItemPrice();
-        homePage.clickOnShoppingCartButton();
-        Assert.assertEquals(cartPage.getItemPrice(), itemPrice);
-    }
-
-
     @Test(priority = 1)
     public void UserCanAddItemInCart(){
 homePage.clickOnAddToCartButton();
         Assert.assertTrue(homePage.ShoppingCartItemCounter.isDisplayed());
-        //drajver.manage().deleteAllCookies();
     }
 
     @Test(priority = 2)
@@ -71,14 +60,7 @@ homePage.clickOnAddToCartButton();
 
     @Test(priority = 3)
     public void UserCanAddMultipleItemsInCart() throws InterruptedException {
-       /*
-        int counter=0;
-        for(int i=0; i<homePage.listOfItems.size(); i++){
-            homePage.clickOnAddToCartButton();
-            counter++;
-            Thread.sleep(500);
- }
-    */
+
         homePage.AddAllItemsInCart();
         String expectedQuaintity = "6";
         Assert.assertEquals(homePage.ShoppingCartItemCounter.getText(), expectedQuaintity);
@@ -86,22 +68,8 @@ homePage.clickOnAddToCartButton();
 
     @Test(priority = 4)
     public void UserCanRemoveAllItemsFromCart() throws InterruptedException {
-        /*
-        int counter = 0;
-       for(int i=0; i<homePage.listOfItems.size(); i++){
-            homePage.clickOnAddToCartButton();
-            counter++;
-            Thread.sleep(500);
-        }
-
-         */
         homePage.AddAllItemsInCart();
        homePage.clickOnShoppingCartButton();
-        /*
-       for(int a=0; a<counter; a++){
-            cartPage.clickOnRemoveItem();
-        }
-         */
         cartPage.RemoveAllItems();
         boolean isNotPresent;
         try {

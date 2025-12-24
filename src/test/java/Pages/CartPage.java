@@ -43,6 +43,9 @@ public class CartPage extends BaseTest {
     @FindBy(className = "inventory_item_price")
     public WebElement itemprice;
 
+    @FindBy(className = "inventory_item_price")
+    public List<WebElement> listOfItems;
+
     @FindBy(id = "checkout")
     public WebElement checkoutButton;
 
@@ -86,6 +89,15 @@ public class CartPage extends BaseTest {
     public double getItemPrice(){
         String priceText = itemprice.getText();
         double price = Double.parseDouble(priceText.replace("$",""));
+        return price;
+    }
+
+    public double checkPrice() {
+        double price = 0.00;
+        for(WebElement item : listOfItems) {
+            String priceText = itemprice.getText();
+            price = Double.parseDouble(priceText.replace("$", ""));
+        }
         return price;
     }
 

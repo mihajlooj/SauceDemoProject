@@ -44,6 +44,12 @@ public class HomePage extends BaseTest {
     @FindBy(className = "inventory_item_price")
     public WebElement itemprice;
 
+    @FindBy(className = "product_sort_container")
+    public WebElement itemSorterDropDown;
+
+    @FindBy(className = "product_sort_container")
+    public List<WebElement> itemSorter;
+
     //--------------------------------------------------------
 
     public void clickOnMenuButton(){
@@ -83,7 +89,16 @@ public class HomePage extends BaseTest {
     public void AddAllItemsInCart() throws InterruptedException {
         for (WebElement item : listOfItems) {
             clickOnAddToCartButton();
-
         }
+    }
+
+    public double addEveryItemAndCheckItemPrice() {
+        double price = 0.00;
+        for(WebElement item : listOfItems) {
+            AddToCartButton.click();
+            String priceText = itemprice.getText();
+            price = Double.parseDouble(priceText.replace("$", ""));
+        }
+        return price;
     }
 }

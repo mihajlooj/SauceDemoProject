@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class CheckoutFunctionality extends BaseTest {
+public class CheckoutFunctionalityTest extends BaseTest {
 
     @BeforeMethod
     public void pageSetUp() throws IOException {
@@ -23,7 +23,7 @@ public class CheckoutFunctionality extends BaseTest {
         homePage = new HomePage();
         cartPage = new CartPage();
         checkoutPage = new CheckoutPage();
-        UserBase = new ExcelReader("Users\\Swag Labs Users.xlsx");
+        UserBase = new ExcelReader("src\\test\\resources\\testdata\\Swag Labs Users.xlsx");
         logInPage.UsernameFieldInput(UserBase.getStringData("Credentials", 1, 0));
         logInPage.PasswordFieldInput(UserBase.getStringData("Credentials", 1, 1));
         logInPage.clickOnLoginButton();

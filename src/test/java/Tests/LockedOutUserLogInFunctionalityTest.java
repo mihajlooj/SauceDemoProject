@@ -4,7 +4,6 @@ import Base.BaseTest;
 import Base.ExcelReader;
 import Pages.HomePage;
 import Pages.LogInPage;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -13,14 +12,14 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.time.Duration;
 
-public class LockedOutUserLogInFunctionality extends BaseTest {
+public class LockedOutUserLogInFunctionalityTest extends BaseTest {
 
     @BeforeMethod
     public void ApplicationSetUp() throws IOException, InterruptedException {
         drajver.navigate().to("https://www.saucedemo.com/");
         logInPage = new LogInPage();
         homePage = new HomePage();
-        UserBase = new ExcelReader("Users\\Swag Labs Users.xlsx");
+        UserBase = new ExcelReader("src\\test\\resources\\testdata\\Swag Labs Users.xlsx");
         wait = new WebDriverWait(drajver, Duration.ofSeconds(7));
     }
 

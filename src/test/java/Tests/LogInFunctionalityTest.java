@@ -4,7 +4,6 @@ import Base.BaseTest;
 import Base.ExcelReader;
 import Pages.HomePage;
 import Pages.LogInPage;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,16 +16,16 @@ import java.io.IOException;
 import java.time.Duration;
 
 
-public class LogInFunctionality extends BaseTest {
+public class LogInFunctionalityTest extends BaseTest {
 
-    private static final Logger log = LoggerFactory.getLogger(LogInFunctionality.class);
+    private static final Logger log = LoggerFactory.getLogger(LogInFunctionalityTest.class);
 
     @BeforeMethod
     public void ApplicationSetUp() throws IOException, InterruptedException {
         drajver.navigate().to("https://www.saucedemo.com/");
         logInPage = new LogInPage();
         homePage = new HomePage();
-        UserBase = new ExcelReader("Users\\Swag Labs Users.xlsx");
+        UserBase = new ExcelReader("src\\test\\resources\\testdata\\Swag Labs Users.xlsx");
         wait = new WebDriverWait(drajver, Duration.ofSeconds(7));
     }
 

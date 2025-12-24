@@ -30,9 +30,6 @@ public class CheckoutPage {
     @FindBy(id = "finish")
     public WebElement FinishButton;
 
-    @FindBy(className = "summary_subtotal_label")
-    public WebElement totalPrice;
-
     @FindBy(className = "complete-header")
     public WebElement checkoutMessage;
 
@@ -68,10 +65,5 @@ public class CheckoutPage {
         FinishButton.click();
     }
 
-    public double TotalPrice(){
-       String priceText = totalPrice.getText();
-        double price = Double.parseDouble(priceText.replace("$",""));
-        return price;
-    }
 
 }
