@@ -50,7 +50,7 @@ mvn clean test
 
 If tests fail to execute:
 - Ensure the `pom.xml` dependencies are resolved.
-- Ensure the Excel file with user credentials is present at: `Users/Swag Labs Users.xlsx`
+- Ensure the Excel file with user credentials is present at: `src/test/java/resources/testdata/Swag Labs Users.xlsx`
 - Verify JDK and Maven installations are correct.
 ```bash
 java -version
